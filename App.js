@@ -7,7 +7,20 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {
+  NativeModules,
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+
+if (__DEV__) {
+  console.log('In __DEV__ mode');
+  NativeModules.DevSettings.setHotLoadingEnabled(true);
+  NativeModules.DevSettings.setIsDebuggingRemotely(true);
+  NativeModules.DevSettings.setLiveReloadEnabled(true);
+}
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -21,7 +34,7 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Nativez!</Text>
+        <Text style={styles.welcome}>Welcome to React Native!</Text>
         <Text style={styles.instructions}>To get started, edit App.js</Text>
         <Text style={styles.instructions}>{instructions}</Text>
       </View>
