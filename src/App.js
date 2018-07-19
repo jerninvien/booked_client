@@ -29,7 +29,7 @@ import { Registration } from 'app/src/components';
 import { LoggedIn } from 'app/src/screens/';
 
 import { deviceStorage } from 'app/src/services/';
-import axios from 'axios';
+// import axios from 'axios';
 
 // import Base from 'app/src/index';
 // import IntroScreen from 'app/src/components/introscreen.js';
@@ -58,19 +58,19 @@ export default class App extends Component {
     console.log('App.js componentDidMount');
     AppState.addEventListener('change', this._handleAppStateChange);
 
-    deviceStorage.loadItem('api_key')
-      .then(res => {
-        if (res !== null) {
-          this._makeInitialLabRequest(res);
-        } else {
-          this.setState({
-            loading: false,
-            message: 'Create a lab or join one',
-          });
-        }
-    }).catch(err => {
-      console.log("deviceStorage.loadItem('api_key') err", err);
-    });
+    // deviceStorage.loadItem('api_key')
+    //   .then(res => {
+    //     if (res !== null) {
+    //       this._makeInitialLabRequest(res);
+    //     } else {
+    //       this.setState({
+    //         loading: false,
+    //         message: 'Create a lab or join one',
+    //       });
+    //     }
+    // }).catch(err => {
+    //   console.log("deviceStorage.loadItem('api_key') err", err);
+    // });
   }
 
   componentWillUnmount() {
@@ -78,33 +78,33 @@ export default class App extends Component {
     AppState.removeEventListener('change', this._handleAppStateChange);
   }
 
-  _makeInitialLabRequest = res => {
-    console.log('_makeInitialLabRequest', res);
-    const headers = {
-      'X-USER-TOKEN': res
-    };
-
-    axios({
-      method: 'GET',
-      url: 'http://localhost:3000/api/v1/lab',
-      headers,
-    }).then(res => {
-      console.log('success here', res);
-
-      this.setState({
-        ...res.data,
-        // showRegisterScreen: false,
-        loading: false,
-        message: '',
-      });
-    }).catch(err => {
-      this.setState({
-        // showRegisterScreen: true,
-        loading: false,
-        message: 'Create a lab or join one',
-      });
-    });
-  }
+  // _makeInitialLabRequest = res => {
+  //   console.log('_makeInitialLabRequest', res);
+  //   const headers = {
+  //     'X-USER-TOKEN': res
+  //   };
+  //
+  //   axios({
+  //     method: 'GET',
+  //     url: 'http://localhost:3000/api/v1/lab',
+  //     headers,
+  //   }).then(res => {
+  //     console.log('success here', res);
+  //
+  //     this.setState({
+  //       ...res.data,
+  //       // showRegisterScreen: false,
+  //       loading: false,
+  //       message: '',
+  //     });
+  //   }).catch(err => {
+  //     this.setState({
+  //       // showRegisterScreen: true,
+  //       loading: false,
+  //       message: 'Create a lab or join one',
+  //     });
+  //   });
+  // }
 
   _handleAppStateChange = nextAppState => {
     // console.log('_handleAppStateChange nextAppState', nextAppState);
