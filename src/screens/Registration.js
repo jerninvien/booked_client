@@ -92,7 +92,7 @@ export class Registration extends Component {
 
     const submitText = pin_code.length > 0 ?
       'Join an existing lab' :
-      'Create a new lab';
+      'Create a new account';
 
     console.log('Registration Render state:', this.state);
 

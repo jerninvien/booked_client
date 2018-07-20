@@ -157,6 +157,34 @@ export default class App extends Component {
            barStyle='dark-content'
         />
 
+        <View style={styles.OvalShapeView}>
+          <Text
+            style={{
+              alignItems: 'flex-start',
+              color: 'white',
+              flex: 1,
+              fontSize: 14,
+              fontWeight: 'bold',
+              // justifyContent: 'center',
+            }}
+          >
+            BACK
+          </Text>
+
+          <Text
+            style={{
+              alignItems: 'center',
+              color: 'white',
+              flex: 1,
+              fontSize: 20,
+              fontWeight: 'bold',
+              // justifyContent: 'center',
+            }}
+          >
+            Register
+          </Text>
+        </View>
+
         {!currentUser &&
           <Fragment>
             <Text
@@ -207,4 +235,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
+
+  OvalShapeView: {
+    // display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 0,
+    width: '100%',
+    height: 100,
+    backgroundColor: 'rgba(118, 184, 121, 1.0)',
+    // borderRadius: 50,
+    // transform: [
+    //   {scaleX: 2}
+    // ]
+  }
 });
