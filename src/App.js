@@ -178,7 +178,6 @@ export default class App extends Component {
               flex: 1,
               fontSize: 20,
               fontWeight: 'bold',
-              // justifyContent: 'center',
             }}
           >
             Register
