@@ -80,9 +80,7 @@ export default class App extends Component {
 
   _makeInitialLabRequest = res => {
     console.log('_makeInitialLabRequest', res);
-    const headers = {
-      'X-USER-TOKEN': res
-    };
+    const headers = { 'X-USER-TOKEN': res };
 
     axios({
       method: 'GET',
