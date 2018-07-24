@@ -23,7 +23,7 @@ import {
 } from 'react-native';
 
 import { connect } from 'react-redux';
-import { getUsers } from './redux/usersReducer';
+import { getUsers } from 'app/src/reduxModules/usersReducer';
 console.log('getUsers', getUsers);
 
 import { Loading } from 'app/src/components/common/';
@@ -167,20 +167,12 @@ export class App extends Component {
           <Fragment>
             <Text
               onPress={() => console.log('TEXTPRESS', Math.round(Math.random()*1000))}
-              style={{
-                textAlign: 'center',
-                fontSize: 40,
-                marginTop: 30,
-              }}>
+              style={{ textAlign: 'center', fontSize: 40, marginTop: 30 }}
+            >
               BOOKED
             </Text>
 
-            <Text
-              style={{
-                fontSize: 20,
-                textAlign: 'center',
-              }}
-            >
+            <Text style={{ fontSize: 20, textAlign: 'center' }}>
               {message}
             </Text>
 
@@ -191,6 +183,21 @@ export class App extends Component {
                 this.setState({ currentUser: null });
               }}
               />
+
+              <View style={styles.mainContent}>
+                {
+                  users.length ? (
+                    users.map((user, i) => {
+                      return (
+                        <View key={i}>
+                          <Text>Name: {user.name}</Text>
+                          <Text>Age: {user.age}</Text>
+                        </View>
+                      );
+                    })
+                  ) : null
+                }
+              </View>
 
           {!loading ? <Registration setupLogin={this._setupLogin} /> : <Loading />}
           </Fragment>
@@ -211,22 +218,12 @@ export class App extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
 
-  // OvalShapeView: {
-  //   // display: 'flex',
-  //   flexDirection: 'row',
-  //   alignItems: 'center',
-  //   marginTop: 0,
-  //   width: '100%',
-  //   height: 100,
-  //   backgroundColor: 'rgba(118, 184, 121, 1.0)',
-  //   // borderRadius: 50,
-  //   // transform: [
-  //   //   {scaleX: 2}
-  //   // ]
-  // }
+  mainContent: {
+    margin: 10,
+  },
 });
 
 mapStateToProps = store => {
@@ -247,30 +244,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(App);
-
-// <View style={styles.OvalShapeView}>
-//   <Text
-//     style={{
-//       alignItems: 'flex-start',
-//       color: 'white',
-//       flex: 1,
-//       fontSize: 14,
-//       fontWeight: 'bold',
-//       // justifyContent: 'center',
-//     }}
-//   >
-//     BACK
-//   </Text>
-//
-//   <Text
-//     style={{
-//       alignItems: 'center',
-//       color: 'white',
-//       flex: 1,
-//       fontSize: 20,
-//       fontWeight: 'bold',
-//     }}
-//   >
-//     Register
-//   </Text>
-// </View>

@@ -8,7 +8,7 @@ import thunk from 'redux-thunk';
 
 import App from 'app/src/App';
 import { name as appName } from './app.json';
-import appStore from 'app/src/redux';
+import appStore from 'app/src/reduxModules';
 
 const configureStore = () => {
   let store = createStore(appStore, applyMiddleware(thunk));
