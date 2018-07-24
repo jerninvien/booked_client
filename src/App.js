@@ -22,6 +22,9 @@ import {
   View,
 } from 'react-native';
 
+import { connect } from 'react-redux';
+import { getUsers } from './redux/usersReducer';
+console.log('getUsers', getUsers);
 
 import { Loading } from 'app/src/components/common/';
 
@@ -41,7 +44,7 @@ if (__DEV__) {
   NativeModules.DevSettings.setLiveReloadEnabled(true);
 }
 
-export default class App extends Component {
+export class App extends Component {
   state = {
     // showRegisterScreen: true,
     appState: AppState.currentState,
@@ -58,19 +61,21 @@ export default class App extends Component {
     console.log('App.js componentDidMount');
     AppState.addEventListener('change', this._handleAppStateChange);
 
-    deviceStorage.loadItem('api_key')
-      .then(res => {
-        if (res !== null) {
-          this._makeInitialLabRequest(res);
-        } else {
-          this.setState({
-            loading: false,
-            message: 'Create account or login',
-          });
-        }
-    }).catch(err => {
-      console.log("deviceStorage.loadItem('api_key') err", err);
-    });
+    this.props.getUsers();
+
+    // deviceStorage.loadItem('api_key')
+    //   .then(res => {
+    //     if (res !== null) {
+    //       this._makeInitialLabRequest(res);
+    //     } else {
+    //       this.setState({
+    //         loading: false,
+    //         message: 'Create account or login',
+    //       });
+    //     }
+    // }).catch(err => {
+    //   console.log("deviceStorage.loadItem('api_key') err", err);
+    // });
   }
 
   componentWillUnmount() {
@@ -78,31 +83,31 @@ export default class App extends Component {
     AppState.removeEventListener('change', this._handleAppStateChange);
   }
 
-  _makeInitialLabRequest = res => {
-    console.log('_makeInitialLabRequest', res);
-    const headers = { 'X-USER-TOKEN': res };
-
-    axios({
-      method: 'GET',
-      url: 'http://localhost:3000/api/v1/lab',
-      headers,
-    }).then(res => {
-      console.log('success here', res);
-
-      this.setState({
-        ...res.data,
-        // showRegisterScreen: false,
-        loading: false,
-        message: '',
-      });
-    }).catch(err => {
-      this.setState({
-        // showRegisterScreen: true,
-        loading: false,
-        message: 'Create a lab or join one',
-      });
-    });
-  }
+  // _makeInitialLabRequest = res => {
+  //   console.log('_makeInitialLabRequest', res);
+  //   const headers = { 'X-USER-TOKEN': res };
+  //
+  //   axios({
+  //     method: 'GET',
+  //     url: 'http://localhost:3000/api/v1/lab',
+  //     headers,
+  //   }).then(res => {
+  //     console.log('success here', res);
+  //
+  //     this.setState({
+  //       ...res.data,
+  //       // showRegisterScreen: false,
+  //       loading: false,
+  //       message: '',
+  //     });
+  //   }).catch(err => {
+  //     this.setState({
+  //       // showRegisterScreen: true,
+  //       loading: false,
+  //       message: 'Create a lab or join one',
+  //     });
+  //   });
+  // }
 
   _handleAppStateChange = nextAppState => {
     // console.log('_handleAppStateChange nextAppState', nextAppState);
@@ -139,13 +144,16 @@ export default class App extends Component {
       // showRegisterScreen,
       currentUser,
       devices,
-      error,
+      // error,
       invite_codes,
-      loading,
+      // loading,
       message,
-      users,
+      // users,
     } = this.state;
 
+    const { error, loading, users } =  this.props;
+
+    console.log('this.propz', this.props);
     console.log('App.js Render state:', this.state);
 
     return (
@@ -154,33 +162,6 @@ export default class App extends Component {
            backgroundColor='steelblue'
            barStyle='dark-content'
         />
-
-        <View style={styles.OvalShapeView}>
-          <Text
-            style={{
-              alignItems: 'flex-start',
-              color: 'white',
-              flex: 1,
-              fontSize: 14,
-              fontWeight: 'bold',
-              // justifyContent: 'center',
-            }}
-          >
-            BACK
-          </Text>
-
-          <Text
-            style={{
-              alignItems: 'center',
-              color: 'white',
-              flex: 1,
-              fontSize: 20,
-              fontWeight: 'bold',
-            }}
-          >
-            Register
-          </Text>
-        </View>
 
         {!currentUser &&
           <Fragment>
@@ -233,17 +214,63 @@ const styles = StyleSheet.create({
     flex: 1
   },
 
-  OvalShapeView: {
-    // display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 0,
-    width: '100%',
-    height: 100,
-    backgroundColor: 'rgba(118, 184, 121, 1.0)',
-    // borderRadius: 50,
-    // transform: [
-    //   {scaleX: 2}
-    // ]
-  }
+  // OvalShapeView: {
+  //   // display: 'flex',
+  //   flexDirection: 'row',
+  //   alignItems: 'center',
+  //   marginTop: 0,
+  //   width: '100%',
+  //   height: 100,
+  //   backgroundColor: 'rgba(118, 184, 121, 1.0)',
+  //   // borderRadius: 50,
+  //   // transform: [
+  //   //   {scaleX: 2}
+  //   // ]
+  // }
 });
+
+mapStateToProps = store => {
+  return {
+    users: store.users.users,
+    loading: store.users.loading,
+    error: store.users.error,
+  };
+}
+
+mapDispatchToProps = dispatch => {
+  return {
+    getUsers: () => dispatch(getUsers())
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
+
+// <View style={styles.OvalShapeView}>
+//   <Text
+//     style={{
+//       alignItems: 'flex-start',
+//       color: 'white',
+//       flex: 1,
+//       fontSize: 14,
+//       fontWeight: 'bold',
+//       // justifyContent: 'center',
+//     }}
+//   >
+//     BACK
+//   </Text>
+//
+//   <Text
+//     style={{
+//       alignItems: 'center',
+//       color: 'white',
+//       flex: 1,
+//       fontSize: 20,
+//       fontWeight: 'bold',
+//     }}
+//   >
+//     Register
+//   </Text>
+// </View>
