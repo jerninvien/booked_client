@@ -24,7 +24,6 @@ import {
 
 import { connect } from 'react-redux';
 import { getUsers } from 'app/src/reduxModules/usersReducer';
-console.log('getUsers', getUsers);
 
 import { Loading } from 'app/src/components/common/';
 
@@ -37,7 +36,7 @@ import axios from 'axios';
 // import Base from 'app/src/index';
 // import IntroScreen from 'app/src/components/introscreen.js';
 
-if (__DEV__) {
+if (__DEV__ && Platform.OS === 'ios') {
   console.log('In __DEV__ mode');
   NativeModules.DevSettings.setHotLoadingEnabled(true);
   NativeModules.DevSettings.setIsDebuggingRemotely(true);
@@ -54,7 +53,7 @@ export class App extends Component {
     lab: {},
     loading: true,
     message: 'Checking account status...',
-    users: [],
+    // users: [],
   }
 
   componentDidMount = () => {
@@ -153,7 +152,7 @@ export class App extends Component {
 
     const { error, loading, users } =  this.props;
 
-    console.log('this.propz', this.props);
+    console.log('this.propz users', users);
     console.log('App.js Render state:', this.state);
 
     return (
@@ -190,8 +189,8 @@ export class App extends Component {
                     users.map((user, i) => {
                       return (
                         <View key={i}>
-                          <Text>Name: {user.name}</Text>
-                          <Text>Age: {user.age}</Text>
+                          <Text>Namez: {`${user.name.title} ${user.name.first}`}</Text>
+                          <Text>Emailz: {user.email}</Text>
                         </View>
                       );
                     })

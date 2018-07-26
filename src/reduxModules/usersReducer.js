@@ -2,14 +2,12 @@ const GET_USERS_PENDING = 'GET_USERS_PENDING';
 const GET_USERS_SUCCESS = 'GET_USERS_SUCCESS';
 const GET_USERS_FAILURE = 'GET_USERS_FAILURE';
 
-import { fetchUsers } from 'app/src/services/api';
-
-console.log('fetchUserszz', fetchUsers);
+import { fetchUsers, fetchUsers2 } from 'app/src/services/api';
 
 const initialState = {
-  users: [],
-  loading: false,
   error: false,
+  loading: false,
+  users: [],
 }
 
 export default function usersReducer (state = initialState, action) {
@@ -23,10 +21,11 @@ export default function usersReducer (state = initialState, action) {
       }
     case GET_USERS_SUCCESS:
       console.log('GET_USERS_SUCCESS', action);
+      const users = action.data.data.results;
       return {
         ...state,
         loading: false,
-        users: action.users
+        users,
       }
     case GET_USERS_FAILURE:
       console.log('GET_USERS_FAILURE', action);
@@ -40,46 +39,28 @@ export default function usersReducer (state = initialState, action) {
   }
 }
 
-
 // const getUsersPending = () => {
 //   console.log('getUsersPending');
-//   return {
-//     type: GET_USERS_PENDING
-//   }
+//   return { type: GET_USERS_PENDING }
 // }
 
 // const getUsersSuccess = data => {
 //   console.log('getUsersSuccess', data);
-//   return {
-//     type: GET_USERS_SUCCESS,
-//     users: data,
-//   }
+//   return { type: GET_USERS_SUCCESS, data }
 // }
 //
-// const getUsersFailure = err => {
-//   console.log('getUsersFailure', err);
-//   return {
-//     type: GET_USERS_FAILURE,
-//     error: err
-//   }
+// const getUsersFailure = error => {
+//   console.log('getUsersFailure', error);
+//   return { type: GET_USERS_FAILURE, error }
 // }
 
+// Thunk function:
 export const getUsers = () => {
   console.log('fetchUserzz');
   return dispatch => {
     dispatch({ type: GET_USERS_PENDING });
-    fetchUsers()
-      .then(data => {
-        dispatch({
-          type: GET_USERS_SUCCESS,
-          users: data,
-        });
-      })
-      .catch(err => {
-        dispatch({
-          type: GET_USERS_FAILURE,
-          error: err
-        });
-      });
+    fetchUsers2()
+      .then(data => dispatch({ type: GET_USERS_SUCCESS, data }))
+      .catch(error => dispatch({ type: GET_USERS_FAILURE, error }));
   }
 }
