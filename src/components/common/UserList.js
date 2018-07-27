@@ -24,6 +24,9 @@ export class UserList extends Component {
         }}
         onPress={() => console.log(`pressed: ${item.name.first}`)}
         subtitle={item.login.username}
+        subtitleStyle={{
+          opacity: 0.7
+        }}
         title={`${item.name.first} ${item.name.last}`}
       />
     );
