@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
  import { ListItem } from 'react-native-elements';
 
+console.log('ListItem', ListItem);
+
 export class UserList extends Component {
 
   static defaultProps = {
@@ -16,14 +18,8 @@ export class UserList extends Component {
         bottomDivider
         chevron
         leftIconOnPress={() => console.log('log me')}
-        leftAvatar={{ source: { uri: item.picture.thumbnail} }}
+        leftAvatar={{ rounded: true, source: {uri: item.picture.medium} }}
         onPress={() => console.log(`pressed: ${item.name.first}`)}
-        roundAvatar
-        scaleProps={{
-          friction: 90,
-          tension: 100,
-          activeScale: 0.95,
-        }}
         subtitle={item.login.username}
         title={`${item.name.first} ${item.name.last}`}
       />
