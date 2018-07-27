@@ -6,7 +6,7 @@ const people = [
   { name: 'Jason', age: 44 }
 ]
 
-export const fetchUsers = () => {
+export const fetchUsersLocal = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       return resolve(people);
@@ -14,9 +14,9 @@ export const fetchUsers = () => {
   })
 }
 
-export const fetchUsers2 = () => {
+export const fetchUsers = () => {
   return axios({
     method: 'GET',
-    url: 'https://randomuser.me/api/?results=5'
+    url: 'https://randomuser.me/api/?results=5&nat=us,dk,fr,gb'
   }).then(res => res).catch(error => error);
 }

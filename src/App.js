@@ -25,7 +25,7 @@ import {
 import { connect } from 'react-redux';
 import { getUsers } from 'app/src/reduxModules/usersReducer';
 
-import { Loading } from 'app/src/components/common/';
+import { Loading, UserList } from 'app/src/components/common/';
 
 // import { Registration } from 'app/src/components';
 import { LoggedIn, Registration } from 'app/src/screens/';
@@ -152,9 +152,6 @@ export class App extends Component {
 
     const { error, loading, users } =  this.props;
 
-    console.log('this.propz users', users);
-    console.log('App.js Render state:', this.state);
-
     return (
       <View style={styles.container}>
         <StatusBar
@@ -186,21 +183,13 @@ export class App extends Component {
               <View style={styles.mainContent}>
                 {
                   users.length ? (
-                    users.map((user, i) => {
-                      return (
-                        <View key={i}>
-                          <Text>Namez: {`${user.name.title} ${user.name.first}`}</Text>
-                          <Text>Emailz: {user.email}</Text>
-                        </View>
-                      );
-                    })
+                    <UserList users={users} />
                   ) : null
                 }
               </View>
 
           {!loading ? <Registration setupLogin={this._setupLogin} /> : <Loading />}
           </Fragment>
-
         }
 
         {currentUser && <LoggedIn currentUser={currentUser} />}

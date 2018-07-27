@@ -2,7 +2,7 @@ const GET_USERS_PENDING = 'GET_USERS_PENDING';
 const GET_USERS_SUCCESS = 'GET_USERS_SUCCESS';
 const GET_USERS_FAILURE = 'GET_USERS_FAILURE';
 
-import { fetchUsers, fetchUsers2 } from 'app/src/services/api';
+import { fetchUsers } from 'app/src/services/api';
 
 const initialState = {
   error: false,
@@ -39,6 +39,17 @@ export default function usersReducer (state = initialState, action) {
   }
 }
 
+// Thunk function:
+export const getUsers = () => {
+  console.log('fetchUserzz');
+  return dispatch => {
+    dispatch({ type: GET_USERS_PENDING });
+    fetchUsers()
+      .then(data => dispatch({ type: GET_USERS_SUCCESS, data }))
+      .catch(error => dispatch({ type: GET_USERS_FAILURE, error }));
+  }
+}
+
 // const getUsersPending = () => {
 //   console.log('getUsersPending');
 //   return { type: GET_USERS_PENDING }
@@ -53,14 +64,3 @@ export default function usersReducer (state = initialState, action) {
 //   console.log('getUsersFailure', error);
 //   return { type: GET_USERS_FAILURE, error }
 // }
-
-// Thunk function:
-export const getUsers = () => {
-  console.log('fetchUserzz');
-  return dispatch => {
-    dispatch({ type: GET_USERS_PENDING });
-    fetchUsers2()
-      .then(data => dispatch({ type: GET_USERS_SUCCESS, data }))
-      .catch(error => dispatch({ type: GET_USERS_FAILURE, error }));
-  }
-}
