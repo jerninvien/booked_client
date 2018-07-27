@@ -18,7 +18,10 @@ export class UserList extends Component {
         bottomDivider
         chevron
         leftIconOnPress={() => console.log('log me')}
-        leftAvatar={{ rounded: true, source: {uri: item.picture.medium} }}
+        leftAvatar={{
+          size: "medium",
+          source: {uri: item.picture.medium}
+        }}
         onPress={() => console.log(`pressed: ${item.name.first}`)}
         subtitle={item.login.username}
         title={`${item.name.first} ${item.name.last}`}
