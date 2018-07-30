@@ -1,32 +1,23 @@
 import React, { Component } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
- import { ListItem } from 'react-native-elements';
-
-console.log('ListItem', ListItem);
+ import { ListItem } from 'react-native-elements'; // version 1.0.0-beta5
 
 export class UserList extends Component {
 
-  static defaultProps = {
-    users: []
-  }
+  static defaultProps = { users: [] }
 
   _keyExtractor = (item, index) => index.toString()
 
-  _renderItem = ({item}) => {
+  _renderItem = ({ item }) => {
     return (
       <ListItem
         bottomDivider
         chevron
+        leftAvatar={{ size: "medium", source: {uri: item.picture.medium}}}
         leftIconOnPress={() => console.log('log me')}
-        leftAvatar={{
-          size: "medium",
-          source: {uri: item.picture.medium}
-        }}
         onPress={() => console.log(`pressed: ${item.name.first}`)}
         subtitle={item.login.username}
-        subtitleStyle={{
-          opacity: 0.7
-        }}
+        subtitleStyle={{ opacity: 0.7 }}
         title={`${item.name.first} ${item.name.last}`}
       />
     );
@@ -41,8 +32,8 @@ export class UserList extends Component {
 
     return (
       <FlatList
-        keyExtractor={this._keyExtractor}
         data={users}
+        keyExtractor={this._keyExtractor}
         renderItem={this._renderItem}
       />
     );
