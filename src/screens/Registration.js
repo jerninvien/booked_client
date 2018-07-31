@@ -23,6 +23,10 @@ export class Registration extends Component {
     username: '',
   }
 
+  componentDidMount = () => {
+    console.log('Registration.js CMD');
+  }
+
   _sendJoinOrCreateRequest = () => {
     const { pin_code, username } = this.state;
     const endpoint = pin_code.length > 0 ? 'users' : 'lab';

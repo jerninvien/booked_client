@@ -13,8 +13,8 @@ import {
   AppState,
   // AsyncStorage,
   Button,
-  NativeModules,
-  Platform,
+  // NativeModules,
+  // Platform,
   StatusBar,
   StyleSheet,
   Text,
@@ -24,11 +24,12 @@ import {
 
 import { connect } from 'react-redux';
 import { getUsers } from 'app/src/reduxModules/usersReducer';
+import { LoggedIn, Registration } from 'app/src/screens/';
 
 import { Loading, UserList } from 'app/src/components/common/';
 
 // import { Registration } from 'app/src/components';
-import { LoggedIn, Registration } from 'app/src/screens/';
+import Routes from 'app/src/Routes';
 
 import { deviceStorage } from 'app/src/services/';
 import axios from 'axios';
@@ -36,12 +37,12 @@ import axios from 'axios';
 // import Base from 'app/src/index';
 // import IntroScreen from 'app/src/components/introscreen.js';
 
-if (__DEV__ && Platform.OS === 'ios') {
-  console.log('In __DEV__ mode');
-  NativeModules.DevSettings.setHotLoadingEnabled(true);
-  NativeModules.DevSettings.setIsDebuggingRemotely(true);
-  NativeModules.DevSettings.setLiveReloadEnabled(true);
-}
+// if (__DEV__ && Platform.OS === 'ios') {
+//   console.log('In __DEV__ mode');
+//   NativeModules.DevSettings.setHotLoadingEnabled(true);
+//   NativeModules.DevSettings.setIsDebuggingRemotely(true);
+//   NativeModules.DevSettings.setLiveReloadEnabled(true);
+// }
 
 export class App extends Component {
   state = {
@@ -57,7 +58,7 @@ export class App extends Component {
   }
 
   componentDidMount = () => {
-    console.log('App.js componentDidMount');
+    console.log('App.js CMD');
     AppState.addEventListener('change', this._handleAppStateChange);
 
     this.props.getUsers();
@@ -138,66 +139,70 @@ export class App extends Component {
   }
 
   render() {
-    const {
-      // lab,
-      // showRegisterScreen,
-      currentUser,
-      devices,
-      // error,
-      invite_codes,
-      // loading,
-      message,
-      // users,
-    } = this.state;
-
-    const { error, loading, users } =  this.props;
-
     return (
-      <View style={styles.container}>
-        <StatusBar
-           backgroundColor='steelblue'
-           barStyle='dark-content'
-        />
-
-        {!currentUser &&
-          <Fragment>
-            <Text
-              onPress={() => console.log('TEXTPRESS', Math.round(Math.random()*1000))}
-              style={{ textAlign: 'center', fontSize: 40, marginTop: 30 }}
-            >
-              BOOKED
-            </Text>
-
-            <Text style={{ fontSize: 20, textAlign: 'center' }}>
-              {message}
-            </Text>
-
-            <Button
-              title="LOGOUT USER"
-              onPress={() => {
-                deviceStorage.deleteItem("api_key");
-                this.setState({ currentUser: null });
-              }}
-              />
-
-              <View style={styles.mainContent}>
-                {
-                  users.length ? (
-                    <UserList users={users} />
-                  ) : null
-                }
-              </View>
-
-          {!loading ? <Registration setupLogin={this._setupLogin} /> : <Loading />}
-          </Fragment>
-        }
-
-        {currentUser && <LoggedIn currentUser={currentUser} />}
-      </View>
+      <Routes />
     );
-
   }
 }
+
+// const {
+//   // lab,
+//   // showRegisterScreen,
+//   currentUser,
+//   devices,
+//   // error,
+//   invite_codes,
+//   // loading,
+//   message,
+//   // users,
+// } = this.state;
+//
+// const { error, loading, users } =  this.props;
+//
+// return (
+//   <View style={styles.container}>
+//     <StatusBar
+//        backgroundColor='steelblue'
+//        barStyle='dark-content'
+//     />
+//
+//     {!currentUser &&
+//       <Fragment>
+//         <Text
+//           onPress={() => console.log('TEXTPRESS', Math.round(Math.random()*1000))}
+//           style={{ textAlign: 'center', fontSize: 40, marginTop: 30 }}
+//         >
+//           BOOKED
+//         </Text>
+//
+//         <Text style={{ fontSize: 20, textAlign: 'center' }}>
+//           {message}
+//         </Text>
+//
+//         <Button
+//           title="LOGOUT USER"
+//           onPress={() => {
+//             deviceStorage.deleteItem("api_key");
+//             this.setState({ currentUser: null });
+//           }}
+//           />
+//
+//           <View style={styles.mainContent}>
+//             {
+//               users.length ? (
+//                 <UserList users={users} />
+//               ) : null
+//             }
+//           </View>
+//
+//       {!loading ? <Registration setupLogin={this._setupLogin} /> : <Loading />}
+//       </Fragment>
+//     }
+//
+//     {currentUser && <LoggedIn currentUser={currentUser} />}
+//   </View>
+// );
+
 
 // {!currentUser && !loading ?
 //   <Registration setupLogin={this._setupLogin} /> :

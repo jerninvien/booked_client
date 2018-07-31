@@ -13,6 +13,10 @@ export class LoggedIn extends Component {
     viewMode: 'Members'
   }
 
+  componentDidMount = () => {
+    console.log('LoggedIn.js CMD');
+  }
+
   render() {
     const { currentUser } = this.props;
     const { viewMode } = this.state;
@@ -31,7 +35,7 @@ export class LoggedIn extends Component {
               () => console.log('Members clicked')
             }
             style={styles.userText2}>
-            Members
+            LoggedIn Screem
           </Text>
           <Text onPress={
               () => console.log('Devices clicked')

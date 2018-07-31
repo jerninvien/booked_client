@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import {
+  Button,
   StyleSheet,
   Text,
   View,
@@ -9,7 +10,6 @@ import {
   Input,
   TextLink,
   Loading,
-  Button
 } from 'app/src/components/common';
 
 export class Login extends Component {
@@ -18,6 +18,10 @@ export class Login extends Component {
     password: '',
     error: '',
     loading: false,
+  }
+
+  componentDidMount = () => {
+    console.log('Login.js CMD');
   }
 
   render() {
@@ -51,9 +55,12 @@ export class Login extends Component {
           </Text>
 
           {!loading ?
-            <Button externalStyle={button}>
-              Login
-            </Button>
+            <Button
+              externalStyle={button}
+              onPress={() => console.log('Button pressed')}
+              title={'Login'}
+            />
+
             :
             <Loading size={'large'} />}
 
