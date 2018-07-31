@@ -9,9 +9,7 @@ import {
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
-
 import App from 'app/src/App';
-
 import { name as appName } from './app.json';
 import appStore from 'app/src/reduxModules';
 
@@ -33,6 +31,7 @@ const AppRedux = () => (
   </Provider>
 );
 
+console.ignoredYellowBox = ['Remote debugger'];
 AppRegistry.registerComponent(appName, () => AppRedux);
 
 // Potentially for build.gradle

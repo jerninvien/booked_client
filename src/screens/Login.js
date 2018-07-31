@@ -127,7 +127,6 @@ const styles = StyleSheet.create({
   section: {
     flexDirection: 'row',
     borderBottomWidth: 2,
-    backgroundColor: '#fff',
     borderColor: '#ddd',
     alignItems: 'center',
     justifyContent: 'flex-end',
