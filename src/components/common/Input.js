@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
     height: 40,
     flex: 1,
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    justifyContent: 'flex-start',
   },
   labelStyle: {
     fontSize: 16,
@@ -62,9 +62,9 @@ const styles = StyleSheet.create({
   },
   inputStyle: {
     color: '#000',
-    paddingRight: 5,
-    paddingLeft: 5,
-    fontSize: 18,
+    // paddingRight: 5,
+    // paddingLeft: 5,
+    fontSize: 14,
     lineHeight: 23,
   }
 });

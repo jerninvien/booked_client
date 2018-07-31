@@ -3,11 +3,13 @@ import {
   Dimensions,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { TextLink } from 'app/src/components/common';
 
 // import { Registration } from 'app/src/components';
 // import { LoggedIn } from 'app/src/screens';
@@ -117,6 +119,21 @@ export class AuthLanding extends Component {
             containerStyle={{ marginTop: 20 }}
           />
 
+          <Text style={{
+            color: "rgb(99, 99, 99)",
+            fontSize: 16,
+            textAlign: 'center',
+            marginTop: 20,
+            fontWeight: "600"
+          }}>
+            <Text>{`Not yet a member? `}</Text>
+            <Text
+                style={{color: 'rgb(197, 120, 29)'}}
+                onPress={this._goToHere('Registration')}>
+                {`Register`}
+             </Text>
+          </Text>
+
         </View>
       </View>
     );
@@ -129,7 +146,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems:'center',
     backgroundColor: 'white'
-  }
+  },
+  registerText: {
+    // alignSelf: 'center',
+    color: 'skyblue',
+    fontSize: 18,
+    fontWeight: '700',
+    // paddingBottom: 10,
+    // paddingTop: 10,
+    // textDecorationLine: 'underline',
+  },
 });
 
 

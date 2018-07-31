@@ -24,9 +24,7 @@ export class LoadingScreen extends Component {
 
     // This will switch to the App screen or Auth screen and this loading
     // screen will be unmounted and thrown away.
-    setTimeout(() => {
-      this.props.navigation.navigate(userToken ? 'App' : 'Auth');
-    }, 2000);
+    this.props.navigation.navigate(userToken ? 'App' : 'Auth');
   };
 
   // Render any loading content that you like here
