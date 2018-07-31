@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   ActivityIndicator,
   AsyncStorage,
@@ -8,7 +8,7 @@ import {
   Text,
 } from 'react-native';
 
-export class LoadingScreen extends React.Component {
+export class LoadingScreen extends Component {
   constructor(props) {
     super(props);
     this._bootstrapAsync();
@@ -33,14 +33,14 @@ export class LoadingScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ActivityIndicator />
-
         <Text
           onPress={() => console.log('TEXTPRESS', Math.round(Math.random()*1000))}
           style={{ textAlign: 'center', fontSize: 40, marginTop: 30 }}
         >
           BOOKEDZZZ
         </Text>
+        <ActivityIndicator />
+
       </View>
     );
   }
@@ -49,5 +49,7 @@ export class LoadingScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center',
+    alignSelf: 'center',
   },
 });

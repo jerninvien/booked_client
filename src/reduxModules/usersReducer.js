@@ -17,7 +17,8 @@ export default function usersReducer (state = initialState, action) {
       return {
         ...state,
         users: [],
-        loading: true
+        loading: true,
+        error: null,
       }
     case GET_USERS_SUCCESS:
       console.log('GET_USERS_SUCCESS', action);
@@ -32,7 +33,7 @@ export default function usersReducer (state = initialState, action) {
       return {
         ...state,
         loading: false,
-        error: true
+        error: action.error.message,
       }
     default:
       return state

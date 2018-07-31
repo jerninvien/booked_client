@@ -140,7 +140,13 @@ export class App extends Component {
 
   render() {
     return (
-      <Routes />
+        <View style={styles.container}>
+          <StatusBar
+             backgroundColor='rgb(118, 184, 121)'
+             barStyle='light-content'
+          />
+          <Routes />
+        </View>
     );
   }
 }
@@ -212,6 +218,8 @@ export class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // justifyContent: 'center',
+    // alignSelf: 'center',
   },
 
   mainContent: {

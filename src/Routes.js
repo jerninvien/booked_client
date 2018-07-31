@@ -17,12 +17,34 @@ const AppStack = createStackNavigator({
 
 const AuthStack = createStackNavigator(
   {
-    AuthLanding: AuthLanding,
-    SignIn: Login,
-    Registration: Registration,
+    AuthLanding: {
+      screen: AuthLanding,
+    },
+    SignIn: {
+      screen: Login,
+      navigationOptions: {
+        title: 'Login'
+      },
+    },
+    Registration: {
+      screen: Registration,
+      navigationOptions: {
+        title: 'Register'
+      },
+    },
   },
   {
     initialRouteName: 'AuthLanding',
+    navigationOptions: {
+      headerBackTitle: 'Back',
+      headerStyle: {
+        backgroundColor: 'rgb(118, 184, 121)',
+      },
+      headerTintColor: '#fff',
+      // headerTitleStyle: {
+      //   fontWeight: 'bold',
+      // },
+    },
   }
 );
 
@@ -34,5 +56,6 @@ export default createSwitchNavigator(
   },
   {
     initialRouteName: 'Loading',
-  }
+  },
+
 );

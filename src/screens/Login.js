@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import {
   Button,
   StyleSheet,
@@ -29,7 +29,7 @@ export class Login extends Component {
     const { button, form, section, errorTextStyle } = styles;
 
     return (
-      <Fragment>
+      <View style={styles.container}>
         <View style={form}>
           <View style={section}>
             <Input
@@ -68,12 +68,17 @@ export class Login extends Component {
         <TextLink onPress={this.props.authSwitch}>
           Dont have an account? Register!
         </TextLink>
-      </Fragment>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  container: {
+    alignItems:'center',
+    flex: 1,
+    justifyContent: 'center',
+  },
   form: {
     width: '100%',
     borderTopWidth: 1,
