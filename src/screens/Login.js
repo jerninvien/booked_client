@@ -14,8 +14,7 @@ import {
 } from 'app/src/components/common';
 
 import { Button } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import IconFeather from 'react-native-vector-icons/Feather';
+import IconFA from 'react-native-vector-icons/FontAwesome';
 
 
 export class Login extends Component {
@@ -36,22 +35,24 @@ export class Login extends Component {
 
     return (
       <View style={styles.container}>
-        <Icon name='book' size={140} color='rgb(118, 184, 121)'/>
+        <IconFA name='book' size={140} color='rgb(118, 184, 121)'/>
 
         <View style={form}>
           <Input
-            label="Email Address"
             iconName='mail'
-            value={email}
+            label="Email Address"
             onChangeText={email => this.setState({ email })}
+            value={email}
           />
+
           <Input
-            label='Password'
             iconName='lock'
+            label='Password'
+            onChangeText={password => this.setState({ password })}
             secureTextEntry
             value={password}
-            onChangeText={password => this.setState({ password })}
           />
+
           <Text style={errorTextStyle}>{error}</Text>
         </View>
 

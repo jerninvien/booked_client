@@ -8,7 +8,6 @@ import {
 
 import IconFeather from 'react-native-vector-icons/Feather';
 
-
 const Input = ({
   disabled,
   externalStyle,

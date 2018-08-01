@@ -43,10 +43,10 @@ export class AuthLanding extends Component {
           flex: 1,
           justifyContent: 'space-around',
           alignItems: 'center',
-          padding: 20,
+          padding: 40,
           // height: width/6,
           width: width,
-          backgroundColor: 'rgb(94, 187, 114)',
+          backgroundColor: 'rgb(118, 184, 121)',
         }}>
           <Icon
             name='book'
@@ -62,16 +62,12 @@ export class AuthLanding extends Component {
 
           <Text style={{
             color: '#fff',
-            fontSize: 20,
+            fontSize: 18,
             textAlign: 'center'
           }}>Organising your side jobs has never been that easy!</Text>
         </View>
 
-        <View style={{
-          flex: 1,
-          justifyContent: 'center',
-        }}>
-
+        <View style={{ flex: 1, justifyContent: 'center' }}>
           <Button
             title="Continue with Facebook"
             // titleStyle={{ fontWeight: "700" }}
@@ -113,7 +109,7 @@ export class AuthLanding extends Component {
               width: 250,
               height: 50,
               borderColor: "rgba(99, 99, 99, 1)",
-              borderWidth: 2,
+              borderWidth: 1,
               borderRadius: 25
             }}
             containerStyle={{ marginTop: 20 }}
