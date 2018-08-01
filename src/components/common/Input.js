@@ -6,9 +6,13 @@ import {
   View,
 } from 'react-native';
 
+import IconFeather from 'react-native-vector-icons/Feather';
+
+
 const Input = ({
   disabled,
   externalStyle,
+  iconName,
   label,
   maxLength,
   multiline,
@@ -24,48 +28,67 @@ const Input = ({
     inputStyle,
     labelStyle,
     containerStyle,
+    section
   } = styles;
 
   return (
-    <View style={containerStyle}>
-      {label &&
-        <Text style={labelStyle}>{label}</Text>
-      }
-      <TextInput
-        autoCorrect={false}
-        disabled={disabled}
-        maxLength={maxLength}
-        multiline={multiline}
-        numberOfLines={numberOfLines}
-        onChangeText={onChangeText}
-        placeholder={placeholder}
-        secureTextEntry={secureTextEntry}
-        style={inputStyle}
-        value={value}
-      />
+    <View style={section}>
+      <View style={containerStyle}>
+        {label &&
+          <Text style={labelStyle}>{label}</Text>
+        }
+        <View style={inputStyle}>
+          <TextInput
+            autoCorrect={false}
+            disabled={disabled}
+            maxLength={maxLength}
+            multiline={multiline}
+            numberOfLines={numberOfLines}
+            onChangeText={onChangeText}
+            placeholder={placeholder}
+            secureTextEntry={secureTextEntry}
+            style={{...inputStyle}}
+            value={value}
+          />
+
+          <View style={{ alignSelf: 'center'}}>
+            <IconFeather
+              name={iconName}
+              size={25}
+              color='rgb(118, 184, 121)'
+            />
+          </View>
+        </View>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  containerStyle: {
-    height: 40,
-    width: '100%',
-    flex: 1,
+  section: {
     flexDirection: 'row',
-    // alignItems: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
+    borderBottomWidth: 2,
+    borderColor: '#ddd',
+    marginBottom: 20,
+    marginTop: 20,
+    height: 50,
+
+  },
+  containerStyle: {
+    flex: 1,
   },
   labelStyle: {
-    fontSize: 16,
-    paddingLeft: 20,
-    flex: 1,
+    fontSize: 10,
+    color: 'rgb(118, 184, 121)',
+    textTransform: 'uppercase',
+    fontWeight: '700',
+    width: '100%',
   },
   inputStyle: {
-    color: '#000',
+    color: '#999',
     fontSize: 18,
-    // lineHeight: 23,
+    flex: 1,
+    flexDirection: 'row',
   }
 });
 

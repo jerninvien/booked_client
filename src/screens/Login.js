@@ -32,55 +32,34 @@ export class Login extends Component {
 
   render() {
     const { email, password, error, loading } = this.state;
-    const { button, form, section, errorTextStyle } = styles;
+    const { form, section, errorTextStyle } = styles;
 
     return (
       <View style={styles.container}>
-        <Icon
-          name='book'
-          size={140}
-          color='rgb(118, 184, 121)'
-        />
+        <Icon name='book' size={140} color='rgb(118, 184, 121)'/>
 
         <View style={form}>
-          <View style={section}>
-            <Input
-              placeholder="user@email.com"
-              value={email}
-              onChangeText={email => this.setState({ email })}
-            />
-            <IconFeather
-              name='mail'
-              size={20}
-              color='rgb(118, 184, 121)'
-            />
-          </View>
-
-          <View style={section}>
-            <Input
-              secureTextEntry
-              placeholder="PASSWORD"
-              value={password}
-              onChangeText={password => this.setState({ password })}
-            />
-            <IconFeather
-              name='lock'
-              size={20}
-              color='rgb(118, 184, 121)'
-            />
-          </View>
-
-          <Text style={errorTextStyle}>
-            {error}
-          </Text>
+          <Input
+            label="Email Address"
+            iconName='mail'
+            value={email}
+            onChangeText={email => this.setState({ email })}
+          />
+          <Input
+            label='Password'
+            iconName='lock'
+            secureTextEntry
+            value={password}
+            onChangeText={password => this.setState({ password })}
+          />
+          <Text style={errorTextStyle}>{error}</Text>
         </View>
 
 
         {!loading ?
           <View>
             <Button
-              title="Login"
-              // titleStyle={{ fontWeight: "700" }}
+              title="LOGIN"
               onPress={() => alert('Implement Login')}
               buttonStyle={{
                 backgroundColor: 'rgb(118, 184, 121)',
@@ -88,7 +67,11 @@ export class Login extends Component {
                 height: 50,
                 borderColor: "transparent",
                 borderWidth: 0,
-                borderRadius: 25
+                borderRadius: 25,
+              }}
+              titleStyle={{
+                fontSize: 14,
+                fontWeight: '700'
               }}
             />
             <Text
@@ -121,24 +104,10 @@ const styles = StyleSheet.create({
   },
   form: {
     width: '75%',
-    // borderTopWidth: 1,
-    // borderColor: '#ddd',
-  },
-  section: {
-    flexDirection: 'row',
-    borderBottomWidth: 2,
-    borderColor: '#ddd',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    marginBottom: 30
   },
   errorTextStyle: {
     alignSelf: 'center',
     fontSize: 18,
     color: 'red'
   },
-
-  button: {
-    backgroundColor: 'green'
-  }
 });
