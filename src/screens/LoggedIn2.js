@@ -8,9 +8,9 @@ import {
   View,
 } from 'react-native';
 
-export class LoggedIn extends Component {
+export class LoggedIn2 extends Component {
   static navigationOptions = {
-    drawerLabel: 'Home',
+    drawerLabel: 'Home2',
   }
 
   state = {
@@ -29,11 +29,11 @@ export class LoggedIn extends Component {
     return (
       <View style={styles.container}>
         <View>
-        <Text
-          onPress={() => this.props.navigation.toggleDrawer()}
-          style={styles.userText}
-        >
-            LoggedIn
+          <Text
+            onPress={() => this.props.navigation.toggleDrawer()}
+            style={styles.userText}
+          >
+            LoggedIn2
           </Text>
         </View>
       </View>

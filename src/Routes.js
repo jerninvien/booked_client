@@ -1,12 +1,14 @@
 import {
+  createDrawerNavigator,
+  createStackNavigator,
   createSwitchNavigator,
-  createStackNavigator
 } from 'react-navigation';
 import {
   LoadingScreen,
   AuthLanding,
   Login,
   LoggedIn,
+  LoggedIn2,
   Registration,
   RegistrationComplete,
 } from 'app/src/screens';
@@ -14,12 +16,12 @@ import {
 // Implementation of HomeScreen, OtherScreen, SignInScreen, AuthLoadingScreen
 // goes here.
 
-const AppStack = createStackNavigator({
+const AppStack = createDrawerNavigator({
   Home: LoggedIn,
-  // Other: OtherScreen
+  Home2: LoggedIn2,
 });
 
-const ZestStack = createSwitchNavigator(
+const AuthStack = createSwitchNavigator(
   {
     Registration: {
       screen: Registration
@@ -42,7 +44,7 @@ const AuthStack = createStackNavigator(
       },
     },
     Registration: {
-      screen: ZestStack,
+      screen: AuthStack,
       navigationOptions: {
         title: 'Register'
       }
