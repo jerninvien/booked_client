@@ -1,10 +1,14 @@
-import { createSwitchNavigator, createStackNavigator } from 'react-navigation';
+import {
+  createSwitchNavigator,
+  createStackNavigator
+} from 'react-navigation';
 import {
   LoadingScreen,
   AuthLanding,
   Login,
   LoggedIn,
   Registration,
+  RegistrationComplete,
 } from 'app/src/screens';
 
 // Implementation of HomeScreen, OtherScreen, SignInScreen, AuthLoadingScreen
@@ -14,6 +18,17 @@ const AppStack = createStackNavigator({
   Home: LoggedIn,
   // Other: OtherScreen
 });
+
+const ZestStack = createSwitchNavigator(
+  {
+    Registration: {
+      screen: Registration
+    },
+    RegistrationComplete: {
+      screen: RegistrationComplete
+    }
+  }
+);
 
 const AuthStack = createStackNavigator(
   {
@@ -27,16 +42,15 @@ const AuthStack = createStackNavigator(
       },
     },
     Registration: {
-      screen: Registration,
+      screen: ZestStack,
       navigationOptions: {
         title: 'Register'
-      },
-    },
+      }
+    }
   },
   {
-    initialRouteName: 'AuthLanding',
     navigationOptions: {
-      headerBackTitle: 'Back',
+      // headerBackTitle: 'Back',
       headerStyle: {
         backgroundColor: 'rgb(118, 184, 121)',
       },
@@ -44,7 +58,7 @@ const AuthStack = createStackNavigator(
       // headerTitleStyle: {
       //   fontWeight: 'bold',
       // },
-    },
+    }
   }
 );
 
@@ -53,9 +67,5 @@ export default createSwitchNavigator(
     Loading: LoadingScreen,
     App: AppStack,
     Auth: AuthStack,
-  },
-  {
-    initialRouteName: 'Loading',
-  },
-
+  }
 );

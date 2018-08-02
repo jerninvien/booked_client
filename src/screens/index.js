@@ -3,3 +3,4 @@ export { LoadingScreen } from './LoadingScreen';
 export { LoggedIn } from './LoggedIn';
 export { Login } from './Login';
 export { Registration } from './Registration';
+export { RegistrationComplete } from './RegistrationComplete';

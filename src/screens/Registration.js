@@ -57,29 +57,30 @@ export class Registration extends Component {
   _sendJoinOrCreateRequest = () => {
     console.log('_sendJoinOrCreateRequest');
 
-    const {
-      name,
-      email,
-      password,
-      password2,
-      profession,
-     } = this.state;
-
-    if (name.length == 0) {
-      this.setState({
-        error: 'Fill all fields please'
-      });
-      return;
-    }
-
-
-    this.setState({
-      error: '',
-      loading: true,
-    });
-
-    alert('Setup Submit');
-    return;
+    this.props.navigation.navigate('RegistrationComplete');
+    // const {
+    //   name,
+    //   email,
+    //   password,
+    //   password2,
+    //   profession,
+    //  } = this.state;
+    //
+    // if (name.length == 0) {
+    //   this.setState({
+    //     error: 'Fill all fields please'
+    //   });
+    //   return;
+    // }
+    //
+    //
+    // this.setState({
+    //   error: '',
+    //   loading: true,
+    // });
+    //
+    // alert('Setup Submit');
+    // return;
 
     // // NOTE HTTP is insecure, only post to HTTPS in production apps
     // axios({
@@ -177,15 +178,15 @@ export class Registration extends Component {
         {!loading ?
           <View>
             <Button
-              disabled={formInvalid}
-              title="REGISTER"
+              // disabled={formInvalid}
+              title='REGISTER'
               onPress={this._sendJoinOrCreateRequest}
               // onPress={() => alert('Implement Login')}
               buttonStyle={{
                 backgroundColor: 'rgb(118, 184, 121)',
                 width: Dimensions.get('window').width * 0.7,
                 height: 50,
-                borderColor: "transparent",
+                borderColor: 'transparent',
                 borderWidth: 0,
                 borderRadius: 25,
               }}

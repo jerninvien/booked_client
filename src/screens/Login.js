@@ -60,7 +60,7 @@ export class Login extends Component {
         {!loading ?
           <View>
             <Button
-              title="LOGIN"
+              title='LOGIN'
               onPress={() => alert('Implement Login')}
               buttonStyle={{
                 backgroundColor: 'rgb(118, 184, 121)',
@@ -78,7 +78,7 @@ export class Login extends Component {
             <Text
               onPress={() => alert('Implement forgot password page')}
               style={{
-                color: "rgb(99, 99, 99)",
+                color: 'rgb(99, 99, 99)',
                 fontSize: 16,
                 textAlign: 'center',
                 marginTop: 20,

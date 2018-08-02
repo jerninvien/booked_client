@@ -9,13 +9,10 @@ import {
 } from 'react-native';
 
 export class LoadingScreen extends Component {
-  constructor(props) {
-    super(props);
-    this._bootstrapAsync();
-  }
-
+  
   componentDidMount = () => {
     console.log('AuthLoadingScreen.js CMD');
+    this._bootstrapAsync();
   }
 
   // Fetch the token from storage then navigate to our appropriate place
@@ -33,7 +30,11 @@ export class LoadingScreen extends Component {
       <View style={styles.container}>
         <Text
           onPress={() => console.log('TEXTPRESS', Math.round(Math.random()*1000))}
-          style={{ textAlign: 'center', fontSize: 40, marginTop: 30 }}
+          style={{
+            textAlign: 'center',
+            fontSize: 40,
+            marginTop: 30
+          }}
         >
           BOOKEDZZZ
         </Text>
