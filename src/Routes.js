@@ -21,7 +21,7 @@ const AppStack = createDrawerNavigator({
   Home2: LoggedIn2,
 });
 
-const AuthStack = createSwitchNavigator(
+const RegistrationStack = createSwitchNavigator(
   {
     Registration: {
       screen: Registration
@@ -44,7 +44,7 @@ const AuthStack = createStackNavigator(
       },
     },
     Registration: {
-      screen: AuthStack,
+      screen: RegistrationStack,
       navigationOptions: {
         title: 'Register'
       }
