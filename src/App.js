@@ -29,7 +29,7 @@ import { LoggedIn, Registration } from 'app/src/screens/';
 import { Loading, UserList } from 'app/src/components/common/';
 
 // import { Registration } from 'app/src/components';
-import Routes from 'app/src/Routes';
+import AppRoutes from 'app/src/Routes';
 
 import { deviceStorage } from 'app/src/services/';
 import axios from 'axios';
@@ -145,7 +145,7 @@ export class App extends Component {
              backgroundColor='rgb(118, 184, 121)'
              barStyle='light-content'
           />
-          <Routes />
+          <AppRoutes />
         </View>
     );
   }

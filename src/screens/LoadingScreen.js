@@ -9,13 +9,13 @@ import {
 } from 'react-native';
 
 export class LoadingScreen extends Component {
-  
+
   componentDidMount = () => {
     console.log('AuthLoadingScreen.js CMD');
     this._bootstrapAsync();
   }
 
-  // Fetch the token from storage then navigate to our appropriate place
+  // Fetch the token from AsyncStorage then navigate accordingly
   _bootstrapAsync = async () => {
     const userToken = await AsyncStorage.getItem('userToken');
 

@@ -34,8 +34,6 @@ export class AuthLanding extends Component {
   render() {
     const width = Dimensions.get('window').width;
 
-    console.log('wdith iz', width);
-
     return (
       <View style={styles.container}>
 

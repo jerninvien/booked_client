@@ -31,9 +31,7 @@ export class Registration extends Component {
     profession: '',
   }
 
-  componentDidMount = () => {
-    console.log('Registration.js CMD');
-  }
+  componentDidMount = () => console.log('Registration.js CMD')
 
   _formInvalid = () => {
     const {
